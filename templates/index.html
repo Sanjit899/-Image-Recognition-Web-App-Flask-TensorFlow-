@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Recognition App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Image Recognition</h1>
+    <p class="subtitle">Offline AI • Flask • No API</p>
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" required>
+        <button type="submit">Recognize</button>
+    </form>
+
+    {% if results %}
+        <div class="results">
+            <h2>Predictions</h2>
+            <ul>
+                {% for name, confidence in results %}
+                    <li>{{ name }} — {{ confidence }}%</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
